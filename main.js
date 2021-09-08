@@ -24,12 +24,20 @@ function fillColor(color){
 
 let isDown = true
 let x = 10
-let y = 1
+let y = 15
 let incrementor = 5
 let downInterval = setInterval(move, 100)
 let upInterval
+let key
 function move() {
-    let key = 38
+    fillColor("White")
+    rect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    fillColor("Green")
+    rect(0, 100, 1, ctx.canvas.width)
+    rect(0, 10, 1, ctx.canvas.width)
+    $("body").keydown(function (event) {
+        key = event.keyCode
+    });
     if(y >= 90) {
         isDown = false
     } 
@@ -52,16 +60,14 @@ function move() {
                 downInterval = setInterval(move, 100)
             }
         }
+        fillColor("Red")
+        circle(x, y, 10, true)
     } else {
-        circle(x, 100, 10, true)
+        fillColor("Red")
+        circle(x, 90, 10, true)
         x++
     }
-    fillColor("White")
-    rect(0, 0, ctx.canvas.width, ctx.canvas.height)
-    fillColor("Green")
-    rect(0, 100, 1, ctx.canvas.width)
-    rect(0, 10, 1, ctx.canvas.width)
-    fillColor("Red")
-    circle(x, y, 10, true)
+    key = null
+    y=15
     
 }
