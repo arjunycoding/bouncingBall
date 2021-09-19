@@ -1,0 +1,64 @@
+.noBreack{
+    padding: 1px;
+    position: relative;
+    display: inline-block;
+}
+.spike{
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7.5px 15px 7.5px;
+    border-color: transparent transparent black transparent;
+}
+.block{
+    width:15px;
+    height:15px;
+    color: #555;
+    background-color: #555;
+}
+.portal{
+    width:15px;
+    height:15px;
+    /* font-size: 10px; */
+    animation-name: colorChange;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+#me{
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    animation-name: colorAnimation;
+    animation-duration: 10  s;
+    animation-iteration-count: infinite;
+}
+
+#game{
+    border:1px solid black;
+    margin:auto;
+    width:750px;
+    height:200px;
+    /* padding-top: 10px; */
+    /* background-image: url("/volcano.png"); */
+}
+#floor{
+    background-color: black;
+}
+
+@keyframes colorChange {
+    0%   {background-color:red; color:red;}
+    16%  {background-color:orange; color:orange;}
+    32%  {background-color:yellow;  color:yellow;}
+    48%  {background-color:green;  color:green;}
+    64%  {background-color:blue;  color:blue;}
+    80%  {background-color:purple; color:purple;}
+    /* 96%  {background-color:pink; color:pink;} */
+    100% {background-color:red; color:red;}
+}
+@keyframes colorAnimation {
+    0%   {background-color:red; color:red;}
+    10%  {background-color:orange; color:orange;}
+    20%  {background-color:yellow;  color:yellow;}
+    100%   {background-color:red; color:red;}
+}

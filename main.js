@@ -1,73 +1,52 @@
-let canvas = document.getElementById("canvas");
-let ctx = canvas.getContext("2d");
-
-ctx.canvas.width  = window.innerWidth;
-ctx.canvas.height = window.innerHeight;
-
-function circle(x, y, radius, fillCircle) {
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, Math.PI * 2, false);
-    if (fillCircle) {
-        ctx.fill();
-    } else {
-        ctx.stroke();
-    }
-};
-
-function rect(x, y, h, w){
-    ctx.fillRect(x, y, w, h); 
-}
-
-function fillColor(color){
-    ctx.fillStyle = color;
-}
-
-let isDown = true
-let x = 10
-let y = 15
-let incrementor = 5
-let downInterval = setInterval(move, 100)
-let upInterval
-let key
-function move() {
-    fillColor("White")
-    rect(0, 0, ctx.canvas.width, ctx.canvas.height)
-    fillColor("Green")
-    rect(0, 100, 1, ctx.canvas.width)
-    rect(0, 10, 1, ctx.canvas.width)
-    $("body").keydown(function (event) {
-        key = event.keyCode
-    });
-    if(y >= 90) {
-        isDown = false
-    } 
-    if(y <= 25) {
-        isDown = true
-    }
-    if(key == 38){
-        if(isDown) {
-            y += incrementor
-            x++
-            if(y == 100){
-                clearInterval(downInterval)
-                upInterval = setInterval(move, 100)
-            }
-        } else {
-            y -= incrementor
-            x++
-            if(y == 10){
-                clearInterval(upInterval)
-                downInterval = setInterval(move, 100)
-            }
+let level = ['1', 's', 's', ' ', 's', 'b', 'b', '2']
+function makeLevel(){
+    obstacle1 = Math.floor(Math.random() * 2) + 1;
+    obstacle2 = Math.floor(Math.random() * 2) + 1;
+    obstacle3 = Math.floor(Math.random() * 2) + 1;
+    obstacle4 = Math.floor(Math.random() * 2) + 1;
+    obstacle5 = Math.floor(Math.random() * 2) + 1;
+    obstacle6 = Math.floor(Math.random() * 2) + 1;
+    obstacle7 = Math.floor(Math.random() * 2) + 1;
+    obstacle8 = Math.floor(Math.random() * 2) + 1;
+    obstacle9 = Math.floor(Math.random() * 2) + 1;
+    obstacles = [obstacle1, obstacle2, obstacle3, obstacle4, obstacle5, obstacle6, obstacle7, obstacle8, obstacle9]
+    for(let i = 0; i <= 9; i++){
+        if(obstacles[i] == 1){
+            obstacles[i] = "b"
         }
-        fillColor("Red")
-        circle(x, y, 10, true)
-    } else {
-        fillColor("Red")
-        circle(x, 90, 10, true)
-        x++
+        if(obstacles[i] == 2){
+            obstacles[i] = "s"
+        }
     }
-    key = null
-    y=15
-    
+    obstacles.unshift("1")
+    obstacles.push("2")
+    return obstacles
 }
+function readArray(array, append){
+    appendTo = $("#course")
+    for(let i = 0; i < array.length; i++){
+        if(array[i] == 's'){
+            appendTo.append("<div class='spike noBreack'></div>&nbsp;");
+        }
+        if(array[i] == 'b'){
+           appendTo.append("<div class='block noBreack'>a</div>&nbsp;");
+        }
+        if(array[i] == '1'){
+            appendTo.append("<div class='start noBreack'></div>&nbsp;");
+        }
+        if(array[i] == '2'){
+            appendTo.append("<div class='finish noBreack'></div>&nbsp;");
+        }
+        if(array[i] == ' '){
+            appendTo.append("<div class='noBreack'>&nbsp;&nbsp;</div>&nbsp;");
+        }
+        if(array[i] == '1'){
+            appendTo.append("<div class='noBreack' id='me'></div>&nbsp;");
+        }
+        if(array[i] == '2'){
+            appendTo.append("<div class='portal noBreack'>a</div>&nbsp;");
+        }
+        
+    }
+}
+readArray(makeLevel())
