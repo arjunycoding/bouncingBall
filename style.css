@@ -1,8 +1,11 @@
+/* Block Types */
+/* Space */
 .noBreack{
     padding: 1px;
     position: relative;
     display: inline-block;
 }
+/* Obstacles */
 .spike{
     width: 0;
     height: 0;
@@ -10,12 +13,20 @@
     border-width: 0 7.5px 15px 7.5px;
     border-color: transparent transparent black transparent;
 }
+.lava{
+    width:15px;
+    height:15px;
+    color: #555;
+    background-color: orange;
+}
+/* Safe Landing */
 .block{
     width:15px;
     height:15px;
     color: #555;
     background-color: #555;
 }
+/* Ending */
 .portal{
     width:15px;
     height:15px;
@@ -24,26 +35,30 @@
     animation-duration: 4s;
     animation-iteration-count: infinite;
 }
+/* Player */
 #me{
     width: 10px;
     height: 10px;
-    background-color: red;
+    background-color: yellow;
     border-radius: 50%;
     animation-name: colorAnimation;
     animation-duration: 10  s;
     animation-iteration-count: infinite;
+    position:absolute;
 }
-
+/* Game Styles */
 #game{
     border:1px solid black;
     margin:auto;
     width:750px;
     height:200px;
-    /* padding-top: 10px; */
-    /* background-image: url("/volcano.png"); */
+    background-image: url("/sunnyDay.jpg");
+    background-size: 200px 220px;
 }
-#floor{
-    background-color: black;
+/* Course */
+#course{
+    position:absolute;
+    top:116px;
 }
 
 @keyframes colorChange {
