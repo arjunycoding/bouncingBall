@@ -58,12 +58,12 @@ spacebar()
 createCoruse(makeLevel())
 // setInterval(
     // function(){
-        player = $("#me")
-        playerTop = player.css("top")
-        playerLeft = player.css("left")
 $("body").keydown(function (event) {
     key = event.keyCode
     if(key == 32){
+        player = $("#me")
+        playerTop = player.css("top")
+        playerLeft = player.css("left")
         playerTop = playerTop.replace('px', '') - 5
         playerTop = playerTop + 'px'
         playerLeft = parseInt(playerLeft.replace('px', '')) + 5
@@ -76,9 +76,9 @@ $("body").keydown(function (event) {
     }
 });
 $("body").keyup(function(event) {
-        console.log(playerTop)
-        playerTop = playerTop.replace('px', '') - 5
-        playerTop = playerTop + 'px'
+        // console.log(playerTop)
+        // playerTop = playerTop.replace('px', '') - 5
+        // playerTop = playerTop + 'px'
         // console.log(`Top: ${playerTop}`)
         player.css("top", "0");
         // console.log("hi")
