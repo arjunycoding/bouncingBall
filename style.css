@@ -60,7 +60,21 @@
     animation-duration: 10s;
     animation-iteration-count: infinite;
     position:absolute;
+    z-index: 1;
     /* top:0px; */
+}
+#gameOver{
+    background-color:rgba(121, 121, 121, 0.5);
+    width:750px;
+    height:200px;
+    position:absolute;
+    z-index: 1;
+    font-family: monospace, Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 @keyframes colorChange {
     0%   {background-color:red; color:red;}
