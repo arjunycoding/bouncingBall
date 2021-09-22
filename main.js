@@ -1,6 +1,6 @@
 let level = ['1', 's', 's', ' ', 's', 'b', 'b', '2']
 function makeLevel(){
-    maxNum = 3
+    maxNum = 2
     obstacle1 = Math.floor(Math.random() * maxNum) + 1;
     obstacle2 = Math.floor(Math.random() * maxNum) + 1;
     obstacle3 = Math.floor(Math.random() * maxNum) + 1;
@@ -18,15 +18,12 @@ function makeLevel(){
         if(obstacles[i] == 2){
             obstacles[i] = "s"
         }
-        if(obstacles[i] == 3){
-            obstacles[i] = "l"
-        }
     }
     obstacles.unshift("1", ' ', ' ')
     obstacles.push("2")
     return obstacles
 }
-function readArray(array, append){
+function createCoruse(array, append){
     appendTo = $("#course")
     for(let i = 0; i < array.length; i++){
         if(array[i] == 's'){
@@ -35,9 +32,6 @@ function readArray(array, append){
         if(array[i] == 'b'){
            appendTo.append("<div class='block noBreack'></div>&nbsp;");
         }
-        if(array[i] == 'l'){
-            appendTo.append("<div class='lava noBreack'></div>&nbsp;");
-         }
         if(array[i] == '1'){
             appendTo.append("<div class='start noBreack'></div>&nbsp;");
         }
@@ -56,5 +50,36 @@ function readArray(array, append){
         
     }
 }
-setInterval(function(){readArray(makeLevel())}, 1000)
-// readArray(makeLevel())
+function spacebar(){
+    up = 32
+    return up
+}
+spacebar()
+createCoruse(makeLevel())
+// setInterval(
+    // function(){
+        player = $("#me")
+        playerTop = player.css("top")
+        playerLeft = player.css("left")
+$("body").keydown(function (event) {
+    key = event.keyCode
+    if(key == 32){
+        playerTop = playerTop.replace('px', '') - 5
+        playerTop = playerTop + 'px'
+        playerLeft = parseInt(playerLeft.replace('px', '')) + 5
+        playerLeft = playerLeft + 'px'
+        console.log(`Top: ${playerTop} \nLeft: ${playerLeft}`)
+        player.css("top", playerTop);
+        player.css("left", playerLeft);
+    } else {
+
+    }
+});
+$("body").keyup(function(event) {
+        console.log(playerTop)
+        playerTop = playerTop.replace('px', '') - 5
+        playerTop = playerTop + 'px'
+        // console.log(`Top: ${playerTop}`)
+        player.css("top", "0");
+        // console.log("hi")
+})
