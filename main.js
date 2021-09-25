@@ -42,7 +42,7 @@ function createCoruse(array, append){
             appendTo.append("<div class='noBreack'>&nbsp;&nbsp;</div>&nbsp;");
         }
         if(array[i] == '1'){
-            appendTo.append("<div class='noBreack' id='me'></div>&nbsp;");
+            appendTo.append("<div class='noBreack' id='me'></div>&emsp; &emsp; ");
         }
         if(array[i] == '2'){
             appendTo.append("<div class='portal noBreack'></div>&nbsp;");
@@ -57,22 +57,21 @@ function syncDelay(milliseconds){
         end = new Date().getTime();
     }
 }
-createCoruse(makeLevel())
-bounce()
 function bounce(){
-    let bounceBy = 1
+    let bounceBy = 5
     $("body").keydown(function (event) {
         key = event.keyCode
         player = $("#me")
         playerTop = player.css("top")
         playerLeft = player.css("left")
         if(key == 32){
-            playerTop = playerTop.replace('px', '') - bounceBy
-            playerTop = playerTop + 'px'
-            playerLeft = parseInt(playerLeft.replace('px', '')) + bounceBy
-            playerLeft = playerLeft + 'px'
-            player.css("top", playerTop);
-            player.css("left", playerLeft);
+            console.log(parseInt(playerTop.replace('px', '')))
+            if(playerTop <= parseInt(playerTop.replace('px', ''))){
+                player.css("top", playerTop);
+            } else {
+                playerTop = (parseInt(playerTop.replace('px', '')) - bounceBy) + 'px'
+                player.css("top", playerTop);
+            }
         } else {
 
         }
@@ -82,15 +81,10 @@ function bounce(){
             playerTop = player.css("top")
             playerLeft = player.css("left")
             while(playerTop <= "0px"){
-                playerTop = parseInt(playerTop.replace('px', '')) + bounceBy
-                playerTop = playerTop + 'px'
-                playerLeft = parseInt(playerLeft.replace('px', '')) + bounceBy
-                playerLeft = playerLeft + 'px'
-                console.log(`Left: ${playerLeft}`)
-                player.css("top", playerTop);
-                player.css("left", playerLeft);
-                syncDelay(100)
+                playerTop = (parseInt(playerTop.replace('px', '')) + bounceBy) + 'px'
+                player.css("top", playerTop);    
             }
     })
 }
-// https://www.vectorstock.com/royalty-free-vector/pixel-art-texture-bright-day-blue-sky-vector-19038049
+createCoruse(makeLevel())
+bounce()
