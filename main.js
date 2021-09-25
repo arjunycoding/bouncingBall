@@ -27,7 +27,7 @@ function createCoruse(array, append){
     appendTo = $("#course")
     for(let i = 0; i < array.length; i++){
         if(array[i] == 's'){
-            appendTo.append("<div class='spike noBreack'></div>&nbsp;");
+            appendTo.append("<img class='bush'src='/bush.png'>");
         }
         if(array[i] == 'b'){
            appendTo.append("<div class='block noBreack'></div>&nbsp;");
@@ -48,13 +48,6 @@ function createCoruse(array, append){
             appendTo.append("<div class='portal noBreack'></div>&nbsp;");
         }
         
-    }
-}
-function syncDelay(milliseconds){
-    var start = new Date().getTime();
-    var end=0;
-    while( (end-start) < milliseconds){
-        end = new Date().getTime();
     }
 }
 function bounce(){
@@ -86,5 +79,8 @@ function bounce(){
             }
     })
 }
-createCoruse(makeLevel())
-bounce()
+function playGame(){
+    createCoruse(makeLevel())
+    bounce()
+}
+playGame()
